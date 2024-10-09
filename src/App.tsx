@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import RctsComptBtn from "./components/button/button";
 import Radio from "./components/radio/radio";
+import Loader from "./components/loader/loader";
 
 import "./App.css";
 
@@ -17,6 +18,26 @@ const App: React.FC = () => {
         <div className="grid-item" key={index}>
           {index === 0 && (
             <RctsComptBtn text="Click Me!" primary size="medium" />
+          )}
+          {index === 13 && (
+            <div>
+              {/* Utilisation avec les valeurs par défaut */}
+              <Loader />
+
+              {/* Personnalisation des props */}
+              <Loader
+                size={40}
+                color="#e74c3c"
+                speed={1}
+                text="Veuillez patienter..."
+              />
+              <Loader
+                size={40}
+                color="#2ecc71"
+                speed={2}
+                text="Téléchargement en cours..."
+              />
+            </div>
           )}
           {index === 14 && (
             <div style={{ padding: "20px" }}>
