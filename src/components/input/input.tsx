@@ -18,6 +18,14 @@ export type InputProps = {
   onChange?: ChangeEventHandler<HTMLInputElement>;
   disabled?: boolean;
   size?: "small" | "medium" | "large";
+  id?: string;
+  name?: string;
+
+  //Pour Label
+  withLabel?: boolean;
+  text?: string;
+  display?: "above" | "side-by-side-left" | "below" | "side-by-side-right";
+  fontSize?: "fontSizeSmall" | "fontSizeMedium" | "fontSizeLarge";
 };
 
 const RctsComptInput: React.FC<InputProps> = ({
@@ -35,10 +43,23 @@ const RctsComptInput: React.FC<InputProps> = ({
   title,
   disabled,
   value,
+  id,
+  name,
+
+  withLabel,
+  text,
+  display,
+  fontSize,
   onChange
 }) => {
   return (
-    <div>
+    <div className={display}>
+      <label 
+      className={`label-${withLabel} ${fontSize} `}
+      >
+        {text}
+      </label>
+
       <input
         className={`input ${size}`}
         autoFocus={autoFocus}
@@ -55,6 +76,8 @@ const RctsComptInput: React.FC<InputProps> = ({
         multiple={multiple}
         pattern={pattern}
         title={title}
+        id={id}
+        name={name}
       />
     </div>
   );

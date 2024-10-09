@@ -32,3 +32,38 @@
 .large{
     padding: 14px 30px 16px;
 }
+
+.label-true{
+
+}
+
+.label-false{
+    display: none;
+}
+
+.fontSizeSmall{
+    font-size: 7px;
+}
+.fontSizeMedium{
+    font-size: 15px;
+}
+.fontSizeLarge{
+    font-size: 25px;
+}
+
+.above{
+    display: flex;
+    flex-direction: column;
+}
+.side-by-side-left{
+    display: flex;
+    flex-direction: row;
+}
+.below{
+    display: flex;
+    flex-direction: column-reverse;
+}
+.side-by-side-right{
+    display: flex;
+    flex-direction: row-reverse;
+}
