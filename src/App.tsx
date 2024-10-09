@@ -18,7 +18,7 @@ const App: React.FC = () => {
           {index === 0 && (
             <RctsComptBtn text="Click Me!" primary size="medium" />
           )}
-          {index === 1 && (
+          {index === 14 && (
             <div style={{ padding: "20px" }}>
               <Radio
                 options={["Voiture", "Bateau", "Avion"]}
