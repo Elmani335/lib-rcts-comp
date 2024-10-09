@@ -1,68 +1,45 @@
-// components/button/button.tsx
-import React, { MouseEventHandler } from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
+import "./radioStyle.css";
+interface RadioButtonProps {
+  options: string[]; // Liste des options à afficher
+  name: string; // Nom pour grouper les boutons radio
+  onChange: (value: string) => void; // Fonction de callback appelée lors du changement de sélection
+}
 
-export type ButtonProps = {
-  text?: string;
-  primary?: boolean;
-  disabled?: boolean;
-  size?: "small" | "medium" | "large";
-  onClick?: MouseEventHandler<HTMLButtonElement>;
-};
+const Radio: React.FC<RadioButtonProps> = ({ options, name, onChange }) => {
+  const [selectedOption, setSelectedOption] = useState<string>("");
 
-const StyledButton = styled.button<ButtonProps>`
-  border: 2px solid transparent;
-  line-height: 1;
-  font-size: 15px;
-  cursor: pointer;
-  font-weight: 700;
-  border-radius: 10px;
-  display: inline-block;
-  color: ${(props) => (props.primary ? "#fff" : "#000")};
-  background-color: ${(props) => (props.primary ? "#6a0dad" : "#e0c3fc")};
-  padding: ${(props) =>
-    props.size === "small"
-      ? "7px 25px 8px"
-      : props.size === "medium"
-      ? "9px 30px 11px"
-      : "14px 30px 16px"};
-  transition: background-color 0.3s, border-color 0.3s;
+  // Gérer la sélection d'une option
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    setSelectedOption(value);
+    onChange(value); // Appelle la fonction parent si nécessaire
+  };
 
-  &:hover {
-    background-color: ${(props) => (props.primary ? "#5a0ba5" : "#d3a7fc")};
-  }
-
-  &:focus {
-    outline: none;
-    border-color: #7d4dbd;
-  }
-
-  &:disabled {
-    cursor: not-allowed;
-    opacity: 0.65;
-  }
-`;
-
-const RctsComptBtn: React.FC<ButtonProps> = ({
-  size,
-  primary,
-  disabled,
-  text,
-  onClick,
-  ...props
-}) => {
   return (
-    <StyledButton
-      type="button"
-      onClick={onClick}
-      primary={primary}
-      disabled={disabled}
-      size={size}
-      {...props}
-    >
-      {text}
-    </StyledButton>
+    <div style={{ fontFamily: "sans-serif" }}>
+      {options.map((option) => (
+        <label
+          key={option}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            color: selectedOption === option ? "#f5b507" : "#000", // Change la couleur du label si sélectionné
+            fontWeight: selectedOption === option ? "bold" : "normal",
+          }}
+        >
+          <input
+            type="radio"
+            name={name}
+            value={option}
+            checked={selectedOption === option}
+            onChange={handleChange}
+          />
+          {option}
+        </label>
+      ))}
+    </div>
   );
 };
 
-export default RctsComptBtn;
+export default Radio;

@@ -1,0 +1,56 @@
+.LabelRadio {
+  position: relative;
+  padding-left: 30px;
+  color: #fff;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.LabelRadio:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 2px solid #fff;
+  transition: background-color 0.3s;
+}
+
+input[type="radio" i]:checked + label:before {
+  background-color: #fff;
+}
+
+input[type="radio" i]:focus + label {
+  color: #ff6f00;
+}
+
+input[type="radio" i]:checked + label {
+  color: #ff6f00;
+}
+
+/* Neon Style */
+input[type="radio" i] + label:before {
+  box-shadow: 0 0 10px #ff6f00;
+}
+
+input[type="radio" i]:checked + label:before {
+  box-shadow: 0 0 10px #ff6f00, 0 0 20px #ff6f00, 0 0 30px #ff6f00;
+}
+
+input[type="radio" i]:hover + label:before {
+  background-color: #ff6f00;
+}
+
+input[type="radio" i]:focus + label:before {
+  background-color: #ff6f00;
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: 90%;
+  }
+}
