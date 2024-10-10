@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import RctsComptBtn from "./components/button/button";
 import Radio from "./components/radio/radio";
 import Loader from "./components/loader/loader";
+import Toggle from "./components/toggle/toggle";
 
 import "./App.css";
 
@@ -19,6 +20,7 @@ const App: React.FC = () => {
           {index === 0 && (
             <RctsComptBtn text="Click Me!" primary size="medium" />
           )}
+          {index === 12 && <Toggle />}
           {index === 13 && (
             <div>
               {/* Utilisation avec les valeurs par défaut */}
