@@ -20,7 +20,11 @@ const App: React.FC = () => {
           {index === 0 && (
             <RctsComptBtn text="Click Me!" primary size="medium" />
           )}
-          {index === 12 && <Toggle />}
+          {index === 12 && 
+          <div>
+          <h1>Composant Toggle</h1>
+          <Toggle initialState={true} onToggle={handleToggleChange} />
+          </div>}
           {index === 13 && (
             <div>
               {/* Utilisation avec les valeurs par défaut */}
