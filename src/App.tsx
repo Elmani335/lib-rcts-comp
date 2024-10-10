@@ -3,10 +3,15 @@ import RctsComptBtn from "./components/button/button";
 import Radio from "./components/radio/radio";
 import Loader from "./components/loader/loader";
 import Toggle from "./components/toggle/toggle";
+import Card from "./components/Molécule/card/card";
 
 import "./App.css";
 
 const App: React.FC = () => {
+  const handleCardClick = () => {
+    alert("Card clicked!");
+  };
+
   const [isOn, setIsOn] = useState(false);
 
   const [selectedRadio, setSelectedRadio] = useState<string>("");
@@ -23,6 +28,20 @@ const App: React.FC = () => {
             /* Personnalisation des props */
             <RctsComptBtn text="Click Me!" primary size="medium" />
           )}
+          {index === 11 && (
+            /* Personnalisation des props */
+            <Card
+              title="Beau couché de soleil"
+              description="Doux couches de soleil en fait une belle pause"
+              imageUrl="https://via.placeholder.com/300x200"
+              imageAlt="Sunset"
+              onClick={handleCardClick}
+              actions={
+                <button style={{ padding: "8px 16px" }}>en savoir plus</button>
+              }
+            />
+          )}
+
           {index === 12 && (
             /* Personnalisation des props */
             <Toggle
