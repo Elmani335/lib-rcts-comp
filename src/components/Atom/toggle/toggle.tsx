@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 interface ToggleSwitchProps {
   isOn: boolean; // État du toggle
