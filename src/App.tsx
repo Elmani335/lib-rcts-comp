@@ -68,6 +68,7 @@ const App: React.FC = () => {
             <div style={{ padding: "20px" }}>
                 <Checkbox
                 name="exampleCheckbox"
+                text="La Centrale"
                 data={[
                     { group: "Moteur", options: [{ value: "1.4", label: "1.4" }, { value: "1.2", label: "1.2" }, { value: "1.9", label: "1.9" }] },
                     { group: "Generation", options: [{ value: "RS", label: "RS" }, { value: "Coupe", label: "Coupe" }, { value: "Societe", label: "Societe" }] },
@@ -84,6 +85,8 @@ const App: React.FC = () => {
                 display="vertical"
                 withLabel={true}
                 fontSize="fontSizeMedium"
+                border
+                size="large"
                 />
             </div>
           )}
