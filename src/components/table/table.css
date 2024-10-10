@@ -1,0 +1,21 @@
+.table-container {
+    padding: 20px;
+  }
+  
+  .custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: var(--border-width, 1px) solid var(--border-color, black);
+  }
+  
+  .custom-table th,
+  .custom-table td {
+    border: var(--border-width, 1px) solid var(--border-color, black);
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .custom-table th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+  }
