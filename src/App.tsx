@@ -7,6 +7,8 @@ import Toggle from "./components/toggle/toggle";
 import "./App.css";
 
 const App: React.FC = () => {
+  const [isOn, setIsOn] = useState(false);
+
   const [selectedRadio, setSelectedRadio] = useState<string>("");
 
   const handleRadioChange = (value: string) => {
@@ -18,16 +20,21 @@ const App: React.FC = () => {
       {[...Array(15)].map((_, index) => (
         <div className="grid-item" key={index}>
           {index === 0 && (
+            /* Personnalisation des props */
             <RctsComptBtn text="Click Me!" primary size="medium" />
           )}
-          {index === 12 && 
-          <div>
-          <h1>Composant Toggle</h1>
-          <Toggle initialState={true} onToggle={handleToggleChange} />
-          </div>}
+          {index === 12 && (
+            /* Personnalisation des props */
+            <Toggle
+              isOn={isOn}
+              onToggle={setIsOn}
+              onColor="green"
+              offColor="red"
+              size="small"
+            />
+          )}
           {index === 13 && (
             <div>
-              {/* Utilisation avec les valeurs par défaut */}
               <Loader />
 
               {/* Personnalisation des props */}
@@ -46,6 +53,7 @@ const App: React.FC = () => {
             </div>
           )}
           {index === 14 && (
+            /* Personnalisation des props */
             <div style={{ padding: "20px" }}>
               <Radio
                 options={["Voiture", "Bateau", "Avion"]}
