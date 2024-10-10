@@ -50,7 +50,7 @@ const App: React.FC = () => {
           )}
           {index === 11 && (
             <div>
-              <button onClick={() => showAlert("danger", "Succès !")}>
+              <button className="button" onClick={() => showAlert("danger", "Succès !")}>
                 Montrer l'alerte
               </button>
               {alert && (
@@ -60,6 +60,7 @@ const App: React.FC = () => {
                   buttonText="Fermer" 
                   onClose={() => setAlert(null)}
                   autoClose={false}
+                  size="small"
                 />
               )}
             </div>

@@ -4,10 +4,11 @@ import "./alert.css";
 export type AlertProps = {
   type: "success" | "danger" | "info";
   message: string;
-  buttonText?: string; // Texte personnalisable pour le bouton
+  buttonText?: string;
   onClose?: () => void;
   autoClose?: boolean;
-  duration?: number; // Durée avant la fermeture automatique
+  duration?: number; 
+  size?: "small" | "medium" | "large";
 };
 
 const Alert: React.FC<AlertProps> = ({
@@ -17,6 +18,7 @@ const Alert: React.FC<AlertProps> = ({
   onClose,
   autoClose = true,
   duration = 3000,
+  size,
 }) => {
   const [visible, setVisible] = useState(true);
 
@@ -33,9 +35,9 @@ const Alert: React.FC<AlertProps> = ({
   if (!visible) return null;
 
   return (
-    <div className={`alert alert-${type}`}>
+    <div className={`alert alert-${type} ${size}`}>
       <span>{message}</span>
-      <button onClick={() => {
+      <button className="button" onClick={() => {
         setVisible(false);
         onClose && onClose();
       }}>
