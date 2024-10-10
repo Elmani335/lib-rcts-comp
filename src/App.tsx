@@ -18,11 +18,13 @@ const App: React.FC = () => {
                 data={[
                     { group: "Renault", options: [{ value: "clio2", label: "Clio 2" }, { value: "Megane3", label: "Megane 3" }] },
                     { group: "Peugeot", options: [{ value: "206", label: "206" }, { value: "5008", label: "5008" }] },
-                    { value: "Autre", label: "autre" } // Option simple
+                    { value: "Autre", label: "autre" } 
                 ]}
                 withLabel={true}
                 text="Select an option"
-                size="medium"
+                size="small"
+                display="above"
+                multiple
                 onChange={(e) => console.log(e.target.value)}
             />
           )}        

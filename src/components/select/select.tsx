@@ -21,7 +21,7 @@ export type SelectProps = {
   size?: "small" | "medium" | "large";
   id?: string;
   name?: string;
-  data?: (GroupedOptions | Option)[]; // Peut être un tableau de groupes ou d'options simples
+  data?: (GroupedOptions | Option)[]; 
   withLabel?: boolean;
   text?: string;
   display?: "above" | "side-by-side-left" | "below" | "side-by-side-right";
