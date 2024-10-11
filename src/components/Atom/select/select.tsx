@@ -64,7 +64,7 @@ const RctsComptSelect: React.FC<SelectProps> = ({
         {data && data.map((item, index) => {
           if ('group' in item) {
             return (
-              <optgroup label={item.group} key={index}>
+              <optgroup className="optgroup" label={item.group} key={index}>
                 {item.options.map((option, optIndex) => (
                   <option value={option.value} key={optIndex}>
                     {option.label}

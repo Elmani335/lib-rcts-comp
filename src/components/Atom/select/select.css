@@ -23,6 +23,12 @@
       opacity: 0.65;
     }
 }
+.optgroup{
+    border: solid;
+    border-color: #333;
+    border-radius: 5px;
+    padding: 5px;
+}
 .small{
     padding: 7px 25px 8px;
 }

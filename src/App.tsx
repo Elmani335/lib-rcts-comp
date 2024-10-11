@@ -120,15 +120,15 @@ const App: React.FC = () => {
   return (
     <div className="grid-container">
             {/* Personnalisation des props */}
-            <div className="grid-item">
+            <div className="grid-item-large">
               <div style={{ padding: "20px" }}>
                   <Accordeon
                   name="exampleAccordeon"
                   text="accordeon"
                   data={[
-                      { title: "titre 1", body: "body1", value: "value1" },
-                      { title: "titre 2", body: "body2", value: "value2" },
-                      { title: "titre 3", body: "body3", value: "value3" },
+                      { title: "Optandi citroque si temporis dispexerint.", body: "Et et in ac pro patriam olim amore subire cum et patriam qui facitis amore tela cum vosmet dimicatione me.", value: "value1" },
+                      { title: "Optandi citroque si temporis dispexerint.", body: "Et et in ac pro patriam olim amore subire cum et patriam qui facitis amore tela cum vosmet dimicatione me.", value: "value2" },
+                      { title: "tOptandi citroque si temporis dispexerint.", body: "Et et in ac pro patriam olim amore subire cum et patriam qui facitis amore tela cum vosmet dimicatione me.", value: "value3" },
                   ]}
                   onChange={(indexClick, openIndexes) => {
                     console.log("Section Cliquée : " + indexClick);
