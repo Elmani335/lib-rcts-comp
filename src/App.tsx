@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+
+import Accordeon from "./components/Organisme/Accordeon/accordeon";
 import RctsComptBtn from "./components/Atom/button/button";
 import Radio from "./components/Atom/radio/radio";
 import Checkbox from "./components/Atom/checkbox/checkbox";
@@ -117,6 +119,29 @@ const App: React.FC = () => {
 
   return (
     <div className="grid-container">
+            {index === 5 && (
+            /* Personnalisation des props */
+            <div style={{ padding: "20px" }}>
+                <Accordeon
+                name="exampleCheckbox"
+                text="accordeon"
+                data={[
+                    { title: "titre 1", body: "body1", value: "value1" },
+                    { title: "titre 2", body: "body2", value: "value2" },
+                    { title: "titre 3", body: "body3", value: "value3" },
+                ]}
+                onChange={(indexClick, openIndexes) => {
+                  console.log("Section Cliquée : " + indexClick);
+                  console.log("Section Ouvert : " + openIndexes);
+              }}
+                withLabel={true}
+                multiple={true}
+                fontSize="fontSizeMedium"
+                border
+                size="large"
+                />
+            </div>
+          )}
       {/* Breadcrumb */}
       <div className="grid-item">
         <Breadcrumb
