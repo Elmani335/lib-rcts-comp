@@ -1,67 +1,103 @@
-// components/button/button.tsx
-import React, { MouseEventHandler } from "react";
-import styled from "styled-components";
+import React, { MouseEventHandler, useState } from "react";
+import "./button.css";
 
 export type ButtonProps = {
   text?: string;
-  primary?: boolean;
+  variant?: "primary" | "secondary" | "danger" | "icon";
   disabled?: boolean;
   size?: "small" | "medium" | "large";
+  loading?: boolean;
+  color?: string;
+  borderColor?: string;
+  borderWidth?: string;
+  borderRadius?: string;
+  fontFamily?: string;
+  width?: string;
+  height?: string;
+  boxShadow?: string;
+  hoverBoxShadow?: string;
+  hoverColor?: string;
+  backgroundColor?: string;
+  href?: string;
+  target?: "_blank" | "_self" | "_parent" | "_top";
+  buttonType?: "button" | "submit" | "link";
   onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
-const StyledButton = styled.button<ButtonProps>`
-  border: 2px solid transparent;
-  line-height: 1;
-  font-size: 15px;
-  cursor: pointer;
-  font-weight: 700;
-  border-radius: 10px;
-  display: inline-block;
-  color: ${(props) => (props.primary ? "#fff" : "#000")};
-  background-color: ${(props) => (props.primary ? "#6a0dad" : "#e0c3fc")};
-  padding: ${(props) =>
-    props.size === "small"
-      ? "7px 25px 8px"
-      : props.size === "medium"
-      ? "9px 30px 11px"
-      : "14px 30px 16px"};
-  transition: background-color 0.3s, border-color 0.3s;
-
-  &:hover {
-    background-color: ${(props) => (props.primary ? "#5a0ba5" : "#d3a7fc")};
-  }
-
-  &:focus {
-    outline: none;
-    border-color: #7d4dbd;
-  }
-
-  &:disabled {
-    cursor: not-allowed;
-    opacity: 0.65;
-  }
-`;
-
-const RctsComptBtn : React.FC<ButtonProps> = ({
-  size,
-  primary,
-  disabled,
+const RctsComptBtn: React.FC<ButtonProps> = ({
   text,
+  variant = "primary",
+  disabled,
+  size,
+  loading,
+  color,
+  borderColor,
+  borderWidth,
+  borderRadius,
+  fontFamily,
+  width,
+  height,
+  boxShadow,
+  hoverBoxShadow,
+  hoverColor,
+  backgroundColor,
+  href,
+  target,
+  buttonType = "button",
   onClick,
   ...props
 }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const buttonStyle = {
+    color,
+    borderColor,
+    borderWidth,
+    borderRadius,
+    fontFamily,
+    width,
+    height,
+    boxShadow: isHovered ? hoverBoxShadow : boxShadow,
+    backgroundColor: isHovered ? hoverColor : backgroundColor,
+    transition: "background-color 0.3s, box-shadow 0.3s, border-color 0.3s",
+  };
+
+  const buttonClass = `button ${variant} ${size}`;
+
+  if (buttonType === "link" && href) {
+    return (
+      <a
+        href={href}
+        target={target}
+        {...props}
+        style={{ textDecoration: "none" }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <button
+          className={buttonClass}
+          style={buttonStyle}
+          disabled={disabled || loading}
+        >
+          {loading ? "Loading..." : text}
+        </button>
+      </a>
+    );
+  }
+
   return (
-    <StyledButton
-      type="button"
+    <button
+      type={buttonType === "submit" ? "submit" : "button"}
+      className={buttonClass}
+      style={buttonStyle}
       onClick={onClick}
-      primary={primary}
-      disabled={disabled}
-      size={size}
+      disabled={disabled || loading}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       {...props}
     >
-      {text}
-    </StyledButton>
+      {loading ? "Loading..." : text}
+    </button>
   );
 };
 
