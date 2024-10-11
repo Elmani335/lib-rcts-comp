@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-import RctsComptBtn from "./components/button/button";
-import Radio from "./components/radio/radio";
-import Loader from "./components/loader/loader";
-import Toggle from "./components/toggle/toggle";
 import Checkbox from "./components/checkbox/checkbox";
+import Accordeon from "./components/Organisme/Accordeon/accordeon";
 import Alert from "./components/alert/alert";
 import RctsComptBtn from "./components/Atom/button/button";
 import Radio from "./components/Atom/radio/radio";
@@ -104,6 +101,24 @@ const App: React.FC = () => {
                 disabled={false}
                 required={true}
                 display="vertical"
+                withLabel={true}
+                fontSize="fontSizeMedium"
+                border
+                size="large"
+                />
+            </div>
+          )}
+            {index === 5 && (
+            /* Personnalisation des props */
+            <div style={{ padding: "20px" }}>
+                <Accordeon
+                name="exampleCheckbox"
+                text="accordeon"
+                data={[
+                    { title: "titre 1", body: "body1", value: "value1" },
+                    { title: "titre 2", body: "body2", value: "value2" },
+                    { title: "titre 3", body: "body3", value: "value3" },
+                ]}
                 withLabel={true}
                 fontSize="fontSizeMedium"
                 border
