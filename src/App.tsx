@@ -1,113 +1,124 @@
 import React, { useState } from "react";
-import Checkbox from "./components/checkbox/checkbox";
+
 import Accordeon from "./components/Organisme/Accordeon/accordeon";
-import Alert from "./components/alert/alert";
 import RctsComptBtn from "./components/Atom/button/button";
 import Radio from "./components/Atom/radio/radio";
+import Checkbox from "./components/Atom/checkbox/checkbox";
+import Alert from "./components/Molecule/alert/alert";
 import Loader from "./components/Atom/loader/loader";
 import Toggle from "./components/Atom/toggle/toggle";
 import Card from "./components/Molecule/card/card";
 import Breadcrumb from "./components/Molecule/breadcrumb/breadcrumb";
-
+import RctsComptSelect from "./components/Atom/select/select";
+import RctsComptInput from "./components/Atom/input/input";
+import Tabs from "./components/tabs/tabs";
+import CustomTable from "./components/table/table";
+import Carousel from "./components/carousel/carousel";
 import "./App.css";
-import RctsComptSelect from "./components/select/select";
-import RctsComptInput from "./components/input/input";
-
 const App: React.FC = () => {
+  // State variables
+  const [selectedRadioOption, setSelectedRadioOption] = useState<string>("");
+  const [selectedCheckboxes, setSelectedCheckboxes] = useState<string[]>([]);
+  const [alert, setAlert] = useState<{
+    type: "success" | "danger" | "info";
+    message: string;
+  } | null>(null);
+  const [isToggleOn, setIsToggleOn] = useState<boolean>(false);
+
+  // Sample data for CustomTable
+  const tableData = {
+    "0-0": { content: "Row1-Col1" },
+    "0-1": { content: "Row1-Col2" },
+    "0-2": { content: "Row1-Col3" },
+    "1-0": { content: "Row2-Col1" },
+    "1-1": { content: "Row2-Col2" },
+    "1-2": { content: "Row2-Col3" },
+    "2-0": { content: "Row3-Col1" },
+    "2-1": { content: "Row3-Col2" },
+    "2-2": { content: "Row3-Col3" },
+    "3-0": { content: "Row4-Col1" },
+    "3-1": { content: "Row4-Col2" },
+    "3-2": { content: "Row4-Col3" },
+    "4-0": { content: "Row5-Col1" },
+    "4-1": { content: "Row5-Col2" },
+    "4-2": { content: "Row5-Col3" },
+  };
+
+  const columnNames = ["Column 1", "Column 2", "Column 3"];
+  const rowNames = ["Row 1", "Row 2", "Row 3", "Row 4", "Row 5"];
+
+  // Sample slides for Carousel
+  const slides = [
+    {
+      content: <h2>Slide 1</h2>,
+      backgroundUrl: "https://via.placeholder.com/600x200?text=Slide+1",
+    },
+    {
+      content: <h2>Slide 2</h2>,
+      backgroundUrl: "https://via.placeholder.com/600x200?text=Slide+2",
+    },
+    {
+      content: <h2>Slide 3</h2>,
+      backgroundUrl: "https://via.placeholder.com/600x200?text=Slide+3",
+    },
+  ];
+
+  // Sample data for Breadcrumb
   const breadcrumbItems = [
     { label: "Home", href: "/" },
     { label: "Products", href: "/products" },
     { label: "Electronics", href: "/products/electronics" },
-    { label: "Laptops" }, // Dernier élément sans lien (élément courant)
+    { label: "Laptops" }, // Current page, no link
   ];
 
-  const handleCardClick = () => {
-    alert("Card clicked!");
+  // Sample data for Tabs
+  const tabsData = [
+    {
+      label: "Tab 1",
+      content: <div>Content for Tab 1</div>,
+    },
+    {
+      label: "Tab 2",
+      content: <div>Content for Tab 2</div>,
+    },
+    {
+      label: "Tab 3",
+      content: <div>Content for Tab 3</div>,
+    },
+  ];
+
+  // Handler functions
+  const handleRadioChange = (value: string) => {
+    setSelectedRadioOption(value);
+    console.log("Selected radio option:", value);
   };
 
-  const [isOn, setIsOn] = useState(false);
-  const [selectedRadio, setSelectedRadio] = useState<string>("");
-  const [alert, setAlert] = useState<{ type: string; message: string } | null>(null);
-  
-  const showAlert = (type: string, message: string) => {
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    setSelectedCheckboxes((prevSelected) => {
+      if (prevSelected.includes(value)) {
+        return prevSelected.filter((item) => item !== value);
+      } else {
+        return [...prevSelected, value];
+      }
+    });
+  };
+
+  const showAlert = (type: "success" | "danger" | "info", message: string) => {
     setAlert({ type, message });
   };
 
-  const handleRadioChange = (value: string) => {
-    setSelectedRadio(value);
+  const handleAlertClose = () => {
+    setAlert(null);
+  };
+
+  const handleToggleChange = (checked: boolean) => {
+    setIsToggleOn(checked);
+    console.log("Toggle is now", checked ? "On" : "Off");
   };
 
   return (
     <div className="grid-container">
-      {[...Array(15)].map((_, index) => (
-        <div className="grid-item" key={index}>
-          {index === 0 && (
-            <RctsComptBtn text="Click Me!" primary size="medium" />
-          )}
-          {index === 1 && (      
-            <RctsComptInput type="text" withLabel={true} text="test" display="side-by-side-right" fontSize="fontSizeLarge" id="id" name="name" autoFocus required size="large" />
-          )}    
-          {index === 2 && (
-            <RctsComptSelect
-                id="exampleSelect"
-                name="example"
-                data={[
-                    { group: "Renault", options: [{ value: "clio2", label: "Clio 2" }, { value: "Megane3", label: "Megane 3" }] },
-                    { group: "Peugeot", options: [{ value: "206", label: "206" }, { value: "5008", label: "5008" }] },
-                    { value: "Autre", label: "autre" } 
-                ]}
-                withLabel={true}
-                text="Select an option"
-                size="small"
-                display="above"
-                multiple
-                onChange={(e) => console.log(e.target.value)}
-            />
-          )}     
-            {index === 3 && (
-            <div>
-              <button className="button" onClick={() => showAlert("danger", "Succès !")}>
-                Montrer l'alerte
-              </button>
-              {alert && (
-                <Alert
-                  type={alert.type}
-                  message={alert.message}
-                  buttonText="Fermer" 
-                  onClose={() => setAlert(null)}
-                  autoClose={false}
-                  size="small"
-                />
-              )}
-            </div>
-          )}   
-            {index === 4 && (
-            /* Personnalisation des props */
-            <div style={{ padding: "20px" }}>
-                <Checkbox
-                name="exampleCheckbox"
-                text="La Centrale"
-                data={[
-                    { group: "Moteur", options: [{ value: "1.4", label: "1.4" }, { value: "1.2", label: "1.2" }, { value: "1.9", label: "1.9" }] },
-                    { group: "Generation", options: [{ value: "RS", label: "RS" }, { value: "Coupe", label: "Coupe" }, { value: "Societe", label: "Societe" }] },
-                    { group: "Carburant", options: [{ value: "Essence", label: "Essence" }, { value: "Diesel", label: "Diesel" }, { value: "Electrique", label: "Electrique" }] },
-                    { value: "1erMain", label: "1er Main" } 
-                ]}
-                onChange={(e) => {
-                    const selectedValue = e.target.value;
-                    console.log(selectedValue);
-                }}
-                value={["1.4", "Essence"]} 
-                disabled={false}
-                required={true}
-                display="vertical"
-                withLabel={true}
-                fontSize="fontSizeMedium"
-                border
-                size="large"
-                />
-            </div>
-          )}
             {index === 5 && (
             /* Personnalisation des props */
             <div style={{ padding: "20px" }}>
@@ -131,50 +142,176 @@ const App: React.FC = () => {
                 />
             </div>
           )}
-          {index === 10 && (
-            /* Personnalisation des props */
-            <div>
-              <Breadcrumb items={breadcrumbItems} separator=">" />
-              <h1>Laptops</h1>
-            </div>
-          )}
-          {index === 11 && (
-            /* Personnalisation des props */
-            <Card
-              title="Beau couché de soleil"
-              description="Doux couches de soleil en fait une belle pause"
-              imageUrl="https://via.placeholder.com/300x200"
-              imageAlt="Sunset"
-              onClick={handleCardClick}
-              actions={
-                <button style={{ padding: "8px 16px" }}>en savoir plus</button>
-              }
-            />
-          )}
+      {/* Breadcrumb */}
+      <div className="grid-item">
+        <Breadcrumb
+          items={breadcrumbItems}
+          separator=">"
+          className="breadcrumb"
+        />
+      </div>
 
-          {index === 12 && (
-            <Toggle
-              isOn={isOn}
-              onToggle={setIsOn}
-              onColor="green"
-              offColor="red"
+      {/* Tabs */}
+      <div className="grid-item-large">
+        <Tabs
+          tabs={tabsData}
+          defaultActiveTab={0}
+          tabBorderColor="#ccc"
+          tabBorderWidth="1px"
+          tabBorderRadius="5px"
+          tabFontFamily="Arial"
+          tabFontSize="16px"
+        />
+      </div>
+
+      {/* Existing components */}
+      <div className="grid-item">
+        <RctsComptBtn
+          text="Show Alert"
+          size="medium"
+          onClick={() => showAlert("info", "This is an informational alert!")}
+        />
+      </div>
+
+      <div className="grid-item">
+        <RctsComptInput
+          type="text"
+          withLabel={true}
+          text="Your Name"
+          display="above"
+          fontSize="fontSizeMedium"
+          id="nameInput"
+          name="name"
+          required
+          size="medium"
+        />
+      </div>
+
+      <div className="grid-item">
+        <RctsComptSelect
+          id="carSelect"
+          name="car"
+          data={[
+            {
+              group: "Renault",
+              options: [
+                { value: "clio2", label: "Clio 2" },
+                { value: "megane3", label: "Megane 3" },
+              ],
+            },
+            {
+              group: "Peugeot",
+              options: [
+                { value: "206", label: "206" },
+                { value: "5008", label: "5008" },
+              ],
+            },
+            { value: "autre", label: "Autre" },
+          ]}
+          withLabel={true}
+          text="Select a Car"
+          size="medium"
+          display="above"
+          multiple
+          onChange={(e) => console.log("Selected car:", e.target.value)}
+        />
+      </div>
+
+      <div className="grid-item">
+        <Loader size={20} color="#3498db" speed={1} text="Loading..." />
+      </div>
+
+      <div className="grid-item">
+        <Radio
+          options={["Male", "Female", "Other"]}
+          name="gender"
+          onChange={handleRadioChange}
+        />
+      </div>
+
+      <div className="grid-item">
+        <Checkbox
+          name="hobbies"
+          data={[
+            { value: "reading", label: "Reading" },
+            { value: "traveling", label: "Traveling" },
+            { value: "cooking", label: "Cooking" },
+          ]}
+          onChange={handleCheckboxChange}
+          text="Select Hobbies"
+          display="vertical"
+          size="medium"
+        />
+      </div>
+
+      <div className="grid-item">
+        <Toggle
+          isOn={isToggleOn}
+          onToggle={handleToggleChange}
+          onColor="green"
+          offColor="gray"
+          size="medium"
+        />
+      </div>
+
+      <div className="grid-item-large">
+        <Carousel
+          slides={slides}
+          navigationButtons={true}
+          autoplay={true}
+          autoplayInterval={5000}
+          borderRadius="8px"
+          boxShadow="0 2px 8px rgba(0, 0, 0, 0.1)"
+          arrowColor="#333"
+          paginationColor="#333"
+          slideAnimationDuration="0.5s"
+          enableSlidingAnimation={true}
+        />
+      </div>
+
+      <div className="grid-item-large">
+        <CustomTable
+          rows={5}
+          columns={3}
+          data={tableData}
+          columnNames={columnNames}
+          rowNames={rowNames}
+          borderColor="#ddd"
+          borderWidth="1px"
+          enableSorting={true}
+          enablePagination={false}
+          enableSelection={true}
+        />
+      </div>
+
+      <div className="grid-item">
+        <Card
+          title="Sample Card"
+          description="This is a sample card description."
+          imageUrl="https://via.placeholder.com/300x150"
+          imageAlt="Sample Image"
+          actions={
+            <RctsComptBtn
+              text="Learn More"
               size="small"
+              onClick={() => alert("Card button clicked!")}
             />
-          )}
-          {index === 13 && (
-            <div>
-              <Loader />
-              <Loader size={40} color="#e74c3c" speed={1} text="Veuillez patienter..." />
-              <Loader size={40} color="#2ecc71" speed={2} text="Téléchargement en cours..." />
-            </div>
-          )}
-          {index === 14 && (
-            <div style={{ padding: "20px" }}>
-              <Radio options={["Voiture", "Bateau", "Avion"]} name="radio" onChange={handleRadioChange} />
-            </div>
-          )}
+          }
+        />
+      </div>
+
+      {alert && (
+        <div className="grid-item">
+          <Alert
+            type={alert.type}
+            message={alert.message}
+            onClose={handleAlertClose}
+            autoClose={false}
+            size="medium"
+            buttonText="Close"
+          />
         </div>
-      ))}
+      )}
     </div>
   );
 };
