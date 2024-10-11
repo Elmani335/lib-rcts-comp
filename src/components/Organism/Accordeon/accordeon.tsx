@@ -32,7 +32,7 @@ const Accordeon: React.FC<AccordeonProps> = ({
 }) => {
   const [openIndexes, setOpenIndexes] = useState<number[]>([]);
 
-  const toggleAccordion = (index: number, indexClick: string) => {
+  const toggleAccordeon = (index: number, indexClick: string) => {
     if (multiple) {
       if (openIndexes.includes(index)) {
         setOpenIndexes(openIndexes.filter(i => i !== index));
@@ -49,18 +49,19 @@ const Accordeon: React.FC<AccordeonProps> = ({
   return (
   <div className={`accordeon-container border-${border} ${size}`}>
     {withLabel && <label className={fontSize}>{text}</label>}
+    <br/>
     {data.map((item, index) => (
-      <div key={index} className="accordion-item">
+      <><div key={index} className="accordeon-item">
         <div
-          className={`accordion-header ${openIndexes.includes(index) ? 'open' : ''} ${size}`}
-          onClick={() => toggleAccordion(index, item.value)}
+          className={`accordeon-header ${openIndexes.includes(index) ? 'open' : ''} ${size}`}
+          onClick={() => toggleAccordeon(index, item.value)}
         >
           {item.title}
         </div>
         {openIndexes.includes(index) && (
-          <div className={`accordion-content ${size}`}>{item.body}</div>
+          <><br /><div className={`accordeon-content ${size}`}>{item.body}</div></>
         )}
-      </div>
+      </div><br /></>
     ))}
   </div>
   );

@@ -2,7 +2,7 @@
     margin: 20px 0;
     color: white;
     background-color: #6a0dad;
-    border-color: black;
+    border-color: black !important;
     font-weight: 700;
     display: flex;
     flex-direction: column;
@@ -21,57 +21,57 @@
     font-size: 18px;
   }
   
-  .accordion-item {
+  .accordeon-item {
     overflow: hidden;
     padding: 10px;
     border: solid 1px black;
     border-radius: 30px;
     font-weight: 700;
-
+    width: -webkit-fill-available;
     
   }
   
-  .accordion-header {
+  .accordeon-header {
     padding: 10px;
     background: #6a0dad;
     color: #fff;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 30px;
     font-weight: 700;
 
   }
   
-  .accordion-header.small {
+  .accordeon-header.small {
     padding: 5px;
   }
   
-  .accordion-header.medium {
+  .accordeon-header.medium {
     padding: 10px;
   }
   
-  .accordion-header.large {
+  .accordeon-header.large {
     padding: 15px;
   }
   
-  .accordion-header.open {
+  .accordeon-header.open {
     background: #5a0ba5;
   }
   
-  .accordion-content {
+  .accordeon-content {
     padding: 10px;
     background: #e0c3fc;
-    border-radius: 5px;
+    border-radius: 30px;
   }
   
-  .accordion-content.small {
+  .accordeon-content.small {
     padding: 5px;
   }
   
-  .accordion-content.medium {
+  .accordeon-content.medium {
     padding: 10px;
   }
   
-  .accordion-content.large {
+  .accordeon-content.large {
     padding: 15px;
   }
   

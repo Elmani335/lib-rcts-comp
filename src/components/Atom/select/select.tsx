@@ -65,26 +65,25 @@ const RctsComptSelect: React.FC<SelectProps> = ({
         required={required}
         multiple={multiple}
       >
-        {data &&
-          data.map((item, index) => {
-            if ("group" in item) {
-              return (
-                <optgroup label={item.group} key={index}>
-                  {item.options.map((option, optIndex) => (
-                    <option value={option.value} key={optIndex}>
-                      {option.label}
-                    </option>
-                  ))}
-                </optgroup>
-              );
-            } else {
-              return (
-                <option value={item.value} key={index}>
-                  {item.label}
-                </option>
-              );
-            }
-          })}
+        {data && data.map((item, index) => {
+          if ('group' in item) {
+            return (
+              <optgroup className="optgroup" label={item.group} key={index}>
+                {item.options.map((option, optIndex) => (
+                  <option value={option.value} key={optIndex}>
+                    {option.label}
+                  </option>
+                ))}
+              </optgroup>
+            );
+          } else {
+            return (
+              <option value={item.value} key={index}>
+                {item.label}
+              </option>
+            );
+          }
+        })}
       </select>
     </div>
   );
