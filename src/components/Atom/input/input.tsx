@@ -4,14 +4,37 @@ import "./input.css";
 
 export type InputProps = {
   autoFocus?: boolean;
-  type?: "button" | "checkbox" | "color" | "date" | "datetime-local" | "email" | "file" | "hidden" | "image" | "month" | "number" | "password" | "radio" | "range" | "reset" | "search"  | "submit" | "tel" | "text" | "time" | "url" | "week";
+  type?:
+    | "button"
+    | "checkbox"
+    | "color"
+    | "date"
+    | "datetime-local"
+    | "email"
+    | "file"
+    | "hidden"
+    | "image"
+    | "month"
+    | "number"
+    | "password"
+    | "radio"
+    | "range"
+    | "reset"
+    | "search"
+    | "submit"
+    | "tel"
+    | "text"
+    | "time"
+    | "url"
+    | "week";
   value?: string;
   placeholder?: string;
+  backgroundColor?: string;
   readOnly?: boolean;
   required?: boolean;
-  maxLength?: number; 
-  min?: string | number; 
-  max?: string | number; 
+  maxLength?: number;
+  min?: string | number;
+  max?: string | number;
   multiple?: boolean;
   pattern?: string;
   title?: string;
@@ -32,6 +55,7 @@ const RctsComptInput: React.FC<InputProps> = ({
   autoFocus,
   type,
   placeholder,
+  backgroundColor,
   readOnly,
   required,
   maxLength,
@@ -45,22 +69,26 @@ const RctsComptInput: React.FC<InputProps> = ({
   value,
   id,
   name,
-
   withLabel,
   text,
   display,
   fontSize,
-  onChange
+  onChange,
 }) => {
+  const inputStyle = {
+    backgroundColor,
+  };
   return (
     <div className={display}>
-      <label 
-      className={`label-${withLabel} ${fontSize} `}
+      <label
+        className={`label-${withLabel} ${fontSize} `}
+        style={{ textDecoration: "none" }}
       >
         {text}
       </label>
 
       <input
+        style={inputStyle}
         className={`input ${size}`}
         autoFocus={autoFocus}
         type={type}
@@ -72,7 +100,7 @@ const RctsComptInput: React.FC<InputProps> = ({
         required={required}
         maxLength={maxLength}
         min={type === "number" || type === "date" ? min : undefined}
-        max={type === "number" || type === "date" ? max : undefined} 
+        max={type === "number" || type === "date" ? max : undefined}
         multiple={multiple}
         pattern={pattern}
         title={title}

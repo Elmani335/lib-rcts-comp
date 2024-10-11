@@ -24,8 +24,7 @@ input[type="radio" i]:checked + label:before {
   background-color: #fff;
 }
 
-input[type="radio" i]:focus + label {
-  color: #ff6f00;
+;
 }
 
 input[type="radio" i]:checked + label {

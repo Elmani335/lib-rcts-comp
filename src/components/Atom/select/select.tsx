@@ -16,12 +16,13 @@ export type SelectProps = {
   autoFocus?: boolean;
   required?: boolean;
   multiple?: boolean;
+  backgroundColor?: string;
   onChange?: ChangeEventHandler<HTMLSelectElement>;
   disabled?: boolean;
   size?: "small" | "medium" | "large";
   id?: string;
   name?: string;
-  data?: (GroupedOptions | Option)[]; 
+  data?: (GroupedOptions | Option)[];
   withLabel?: boolean;
   text?: string;
   display?: "above" | "side-by-side-left" | "below" | "side-by-side-right";
@@ -36,6 +37,7 @@ const RctsComptSelect: React.FC<SelectProps> = ({
   disabled,
   id,
   name,
+  backgroundColor,
   data,
   withLabel,
   text,
@@ -43,15 +45,17 @@ const RctsComptSelect: React.FC<SelectProps> = ({
   fontSize,
   onChange,
 }) => {
+  const selectStyle = {
+    backgroundColor,
+  };
   return (
     <div className={display}>
       {withLabel && (
-        <label className={`label-${withLabel} ${fontSize}`}>
-          {text}
-        </label>
+        <label className={`label-${withLabel} ${fontSize}`}>{text}</label>
       )}
 
       <select
+        style={selectStyle}
         className={`select ${size}`}
         id={id}
         name={name}
@@ -61,25 +65,26 @@ const RctsComptSelect: React.FC<SelectProps> = ({
         required={required}
         multiple={multiple}
       >
-        {data && data.map((item, index) => {
-          if ('group' in item) {
-            return (
-              <optgroup label={item.group} key={index}>
-                {item.options.map((option, optIndex) => (
-                  <option value={option.value} key={optIndex}>
-                    {option.label}
-                  </option>
-                ))}
-              </optgroup>
-            );
-          } else {
-            return (
-              <option value={item.value} key={index}>
-                {item.label}
-              </option>
-            );
-          }
-        })}
+        {data &&
+          data.map((item, index) => {
+            if ("group" in item) {
+              return (
+                <optgroup label={item.group} key={index}>
+                  {item.options.map((option, optIndex) => (
+                    <option value={option.value} key={optIndex}>
+                      {option.label}
+                    </option>
+                  ))}
+                </optgroup>
+              );
+            } else {
+              return (
+                <option value={item.value} key={index}>
+                  {item.label}
+                </option>
+              );
+            }
+          })}
       </select>
     </div>
   );
