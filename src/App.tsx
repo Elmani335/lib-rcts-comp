@@ -1,20 +1,16 @@
 import React, { useState } from "react";
-import RctsComptBtn from "./components/button/button";
-import Radio from "./components/radio/radio";
-import Loader from "./components/loader/loader";
-import Toggle from "./components/toggle/toggle";
-import Checkbox from "./components/checkbox/checkbox";
-import Alert from "./components/alert/alert";
 import RctsComptBtn from "./components/Atom/button/button";
 import Radio from "./components/Atom/radio/radio";
+import Checkbox from "./components/Atom/checkbox/checkbox";
+import Alert from "./components/Molecule/alert/alert";
 import Loader from "./components/Atom/loader/loader";
 import Toggle from "./components/Atom/toggle/toggle";
 import Card from "./components/Molecule/card/card";
 import Breadcrumb from "./components/Molecule/breadcrumb/breadcrumb";
+import RctsComptSelect from "./components/Atom/select/select";
+import RctsComptInput from "./components/Atom/input/input";
 
 import "./App.css";
-import RctsComptSelect from "./components/select/select";
-import RctsComptInput from "./components/input/input";
 
 const App: React.FC = () => {
   const breadcrumbItems = [
