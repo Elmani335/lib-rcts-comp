@@ -1,25 +1,116 @@
+/* App.css */
+html {
+  font-family: Arial, Helvetica, sans-serif;
+background: linear-gradient(180deg, rgba(119,0,255,1) 0%, rgba(98,0,231,1) 47%, rgba(0,2,120,1) 100%);
+}
+
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
   padding: 20px;
 }
 
-.grid-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 150px;
-  border: 1px solid #ff0000;
+.grid-item,
+.grid-item-large {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  padding: 20px;
+  border-radius: 8px;
 }
 
 .grid-item-large {
-  grid-column: span 3;
-  grid-row: span 2;
-  height: 100%;
+  grid-column: span 2;
 }
 
-.carousel-item-large {
-  grid-column: span 3;
-  grid-row: span 2;
+.carousel-container {
+  width: 100%;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+
+.label-true {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.input,
+.select,
+.checkbox-container,
+.alert {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.button {
+  width: 100%;
+}
+
+.alert {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.alert-info {
+  background-color: #e7f3fe;
+  color: #31708f;
+}
+
+.alert-danger {
+  background-color: #f2dede;
+  color: #a94442;
+}
+
+.alert-success {
+  background-color: #dff0d8;
+  color: #3c763d;
+}
+
+.breadcrumb {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.breadcrumb a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.breadcrumb span {
+  color: #555;
+}
+
+.tabs-container {
+  width: 100%;
+}
+
+.tabs-header {
+  display: flex;
+  border-bottom: 1px solid #ccc;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 10px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.tab-button.active {
+  border-bottom-color: #007bff;
+  font-weight: bold;
+}
+
+.tab-content {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-top: none;
 }
