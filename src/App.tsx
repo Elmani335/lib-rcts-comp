@@ -9,6 +9,8 @@ import Card from "./components/Molecule/card/card";
 import Breadcrumb from "./components/Molecule/breadcrumb/breadcrumb";
 import RctsComptSelect from "./components/Atom/select/select";
 import RctsComptInput from "./components/Atom/input/input";
+import Tabs from "./components/tabs/tabs";
+import CustomTable from "./components/table/table";
 
 import "./App.css";
 
@@ -26,8 +28,10 @@ const App: React.FC = () => {
 
   const [isOn, setIsOn] = useState(false);
   const [selectedRadio, setSelectedRadio] = useState<string>("");
-  const [alert, setAlert] = useState<{ type: string; message: string } | null>(null);
-  
+  const [alert, setAlert] = useState<{ type: string; message: string } | null>(
+    null
+  );
+
   const showAlert = (type: string, message: string) => {
     setAlert({ type, message });
   };
@@ -43,60 +47,107 @@ const App: React.FC = () => {
           {index === 0 && (
             <RctsComptBtn text="Click Me!" primary size="medium" />
           )}
-          {index === 1 && (      
-            <RctsComptInput type="text" withLabel={true} text="test" display="side-by-side-right" fontSize="fontSizeLarge" id="id" name="name" autoFocus required size="large" />
-          )}    
+          {index === 1 && (
+            <RctsComptInput
+              type="text"
+              withLabel={true}
+              text="test"
+              display="side-by-side-right"
+              fontSize="fontSizeLarge"
+              id="id"
+              name="name"
+              autoFocus
+              required
+              size="large"
+            />
+          )}
           {index === 2 && (
             <RctsComptSelect
-                id="exampleSelect"
-                name="example"
-                data={[
-                    { group: "Renault", options: [{ value: "clio2", label: "Clio 2" }, { value: "Megane3", label: "Megane 3" }] },
-                    { group: "Peugeot", options: [{ value: "206", label: "206" }, { value: "5008", label: "5008" }] },
-                    { value: "Autre", label: "autre" } 
-                ]}
-                withLabel={true}
-                text="Select an option"
-                size="small"
-                display="above"
-                multiple
-                onChange={(e) => console.log(e.target.value)}
+              id="exampleSelect"
+              name="example"
+              data={[
+                {
+                  group: "Renault",
+                  options: [
+                    { value: "clio2", label: "Clio 2" },
+                    { value: "Megane3", label: "Megane 3" },
+                  ],
+                },
+                {
+                  group: "Peugeot",
+                  options: [
+                    { value: "206", label: "206" },
+                    { value: "5008", label: "5008" },
+                  ],
+                },
+                { value: "Autre", label: "autre" },
+              ]}
+              withLabel={true}
+              text="Select an option"
+              size="small"
+              display="above"
+              multiple
+              onChange={(e) => console.log(e.target.value)}
             />
-          )}     
-            {index === 3 && (
+          )}
+          {index === 3 && (
             <div>
-              <button className="button" onClick={() => showAlert("danger", "Succès !")}>
+              <button
+                className="button"
+                onClick={() => showAlert("danger", "Succès !")}
+              >
                 Montrer l'alerte
               </button>
               {alert && (
                 <Alert
                   type={alert.type}
                   message={alert.message}
-                  buttonText="Fermer" 
+                  buttonText="Fermer"
                   onClose={() => setAlert(null)}
                   autoClose={false}
                   size="small"
                 />
               )}
             </div>
-          )}   
-            {index === 4 && (
+          )}
+          {index === 4 && (
             /* Personnalisation des props */
             <div style={{ padding: "20px" }}>
-                <Checkbox
+              <Checkbox
                 name="exampleCheckbox"
                 text="La Centrale"
                 data={[
-                    { group: "Moteur", options: [{ value: "1.4", label: "1.4" }, { value: "1.2", label: "1.2" }, { value: "1.9", label: "1.9" }] },
-                    { group: "Generation", options: [{ value: "RS", label: "RS" }, { value: "Coupe", label: "Coupe" }, { value: "Societe", label: "Societe" }] },
-                    { group: "Carburant", options: [{ value: "Essence", label: "Essence" }, { value: "Diesel", label: "Diesel" }, { value: "Electrique", label: "Electrique" }] },
-                    { value: "1erMain", label: "1er Main" } 
+                  {
+                    group: "Moteur",
+                    options: [
+                      { value: "1.4", label: "1.4" },
+                      { value: "1.2", label: "1.2" },
+                      { value: "1.9", label: "1.9" },
+                    ],
+                  },
+                  {
+                    group: "Generation",
+                    options: [
+                      { value: "RS", label: "RS" },
+                      { value: "Coupe", label: "Coupe" },
+                      { value: "Societe", label: "Societe" },
+                    ],
+                  },
+                  {
+                    group: "Carburant",
+                    options: [
+                      { value: "Essence", label: "Essence" },
+                      { value: "Diesel", label: "Diesel" },
+                      { value: "Electrique", label: "Electrique" },
+                    ],
+                  },
+                  { value: "1erMain", label: "1er Main" },
                 ]}
                 onChange={(e) => {
-                    const selectedValue = e.target.value;
-                    console.log(selectedValue);
+                  const selectedValue = e.target.value;
+                  console.log(selectedValue);
                 }}
-                value={["1.4", "Essence"]} 
+                value={["1.4", "Essence"]}
                 disabled={false}
                 required={true}
                 display="vertical"
@@ -104,7 +155,7 @@ const App: React.FC = () => {
                 fontSize="fontSizeMedium"
                 border
                 size="large"
-                />
+              />
             </div>
           )}
           {index === 10 && (
@@ -140,13 +191,27 @@ const App: React.FC = () => {
           {index === 13 && (
             <div>
               <Loader />
-              <Loader size={40} color="#e74c3c" speed={1} text="Veuillez patienter..." />
-              <Loader size={40} color="#2ecc71" speed={2} text="Téléchargement en cours..." />
+              <Loader
+                size={40}
+                color="#e74c3c"
+                speed={1}
+                text="Veuillez patienter..."
+              />
+              <Loader
+                size={40}
+                color="#2ecc71"
+                speed={2}
+                text="Téléchargement en cours..."
+              />
             </div>
           )}
           {index === 14 && (
             <div style={{ padding: "20px" }}>
-              <Radio options={["Voiture", "Bateau", "Avion"]} name="radio" onChange={handleRadioChange} />
+              <Radio
+                options={["Voiture", "Bateau", "Avion"]}
+                name="radio"
+                onChange={handleRadioChange}
+              />
             </div>
           )}
         </div>
