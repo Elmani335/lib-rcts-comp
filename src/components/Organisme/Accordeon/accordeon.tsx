@@ -10,12 +10,13 @@ export type Option = {
 export type AccordeonProps = {
   name: string;
   data: Option[];
-  onChange: ChangeEventHandler<HTMLInputElement>;
+  onChange: string;
   text?: string;
   withLabel?: boolean;
   fontSize?: "fontSizeSmall" | "fontSizeMedium" | "fontSizeLarge";
   border?: boolean;
   size?: "small" | "medium" | "large";
+  multiple: boolean
 };
 
 const Accordeon: React.FC<AccordeonProps> = ({
@@ -27,12 +28,23 @@ const Accordeon: React.FC<AccordeonProps> = ({
   fontSize,
   border,
   size,
+  multiple,
 }) => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openIndexes, setOpenIndexes] = useState<number[]>([]);
 
-  const toggleAccordion = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
+  const toggleAccordion = (index: number, indexClick: string) => {
+    if (multiple) {
+      if (openIndexes.includes(index)) {
+        setOpenIndexes(openIndexes.filter(i => i !== index));
+      } else {
+        setOpenIndexes([...openIndexes, index]);
+      }
+    } else {
+      setOpenIndexes(openIndexes[0] === index ? [] : [index]);
+    }
+    onChange(indexClick, openIndexes);
   };
+
 
   return (
     <div className={`accordeon-container border-${border} ${size}`}>
@@ -40,12 +52,12 @@ const Accordeon: React.FC<AccordeonProps> = ({
       {data.map((item, index) => (
         <div key={index} className="accordion-item">
           <div
-            className={`accordion-header ${openIndex === index ? 'open' : ''}`}
-            onClick={() => toggleAccordion(index)}
+            className={`accordion-header ${openIndexes.includes(index) ? 'open' : ''}`}
+            onClick={() => toggleAccordion(index, item.value)}
           >
             {item.title}
           </div>
-          {openIndex === index && (
+          {openIndexes.includes(index) && (
             <div className="accordion-content">{item.body}</div>
           )}
         </div>
@@ -55,3 +67,7 @@ const Accordeon: React.FC<AccordeonProps> = ({
 };
 
 export default Accordeon;
+function setOpenIndexes(arg0: number[]) {
+  throw new Error("Function not implemented.");
+}
+

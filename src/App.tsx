@@ -119,7 +119,12 @@ const App: React.FC = () => {
                     { title: "titre 2", body: "body2", value: "value2" },
                     { title: "titre 3", body: "body3", value: "value3" },
                 ]}
+                onChange={(indexClick, openIndexes) => {
+                  console.log("Section Cliquée : " + indexClick);
+                  console.log("Section Ouvert : " + openIndexes);
+              }}
                 withLabel={true}
+                multiple={true}
                 fontSize="fontSizeMedium"
                 border
                 size="large"
