@@ -1,4 +1,9 @@
 import React, { useState } from "react";
+import RctsComptBtn from "./components/button/button";
+import Radio from "./components/radio/radio";
+import Loader from "./components/loader/loader";
+import Toggle from "./components/toggle/toggle";
+import Alert from "./components/alert/alert";
 import RctsComptBtn from "./components/Atom/button/button";
 import Radio from "./components/Atom/radio/radio";
 import Loader from "./components/Atom/loader/loader";
@@ -23,11 +28,15 @@ const App: React.FC = () => {
   };
 
   const [isOn, setIsOn] = useState(false);
-
   const [selectedRadio, setSelectedRadio] = useState<string>("");
+  const [alert, setAlert] = useState<{ type: string; message: string } | null>(null);
+  
+  const showAlert = (type: string, message: string) => {
+    setAlert({ type, message });
+  };
 
   const handleRadioChange = (value: string) => {
-    setSelectedRadio(value); // Met à jour l'état local avec la valeur sélectionnée
+    setSelectedRadio(value);
   };
 
   return (
@@ -35,7 +44,6 @@ const App: React.FC = () => {
       {[...Array(15)].map((_, index) => (
         <div className="grid-item" key={index}>
           {index === 0 && (
-            /* Personnalisation des props */
             <RctsComptBtn text="Click Me!" primary size="medium" />
           )}
           {index === 1 && (      
@@ -82,7 +90,6 @@ const App: React.FC = () => {
           )}
 
           {index === 12 && (
-            /* Personnalisation des props */
             <Toggle
               isOn={isOn}
               onToggle={setIsOn}
@@ -94,30 +101,30 @@ const App: React.FC = () => {
           {index === 13 && (
             <div>
               <Loader />
-
-              {/* Personnalisation des props */}
-              <Loader
-                size={40}
-                color="#e74c3c"
-                speed={1}
-                text="Veuillez patienter..."
-              />
-              <Loader
-                size={40}
-                color="#2ecc71"
-                speed={2}
-                text="Téléchargement en cours..."
-              />
+              <Loader size={40} color="#e74c3c" speed={1} text="Veuillez patienter..." />
+              <Loader size={40} color="#2ecc71" speed={2} text="Téléchargement en cours..." />
             </div>
           )}
           {index === 14 && (
-            /* Personnalisation des props */
             <div style={{ padding: "20px" }}>
-              <Radio
-                options={["Voiture", "Bateau", "Avion"]}
-                name="radio"
-                onChange={handleRadioChange}
-              />
+              <Radio options={["Voiture", "Bateau", "Avion"]} name="radio" onChange={handleRadioChange} />
+            </div>
+          )}
+          {index === 11 && (
+            <div>
+              <button className="button" onClick={() => showAlert("danger", "Succès !")}>
+                Montrer l'alerte
+              </button>
+              {alert && (
+                <Alert
+                  type={alert.type}
+                  message={alert.message}
+                  buttonText="Fermer" 
+                  onClose={() => setAlert(null)}
+                  autoClose={false}
+                  size="small"
+                />
+              )}
             </div>
           )}
         </div>
