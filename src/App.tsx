@@ -151,16 +151,19 @@ const App: React.FC = () => {
         />
       </div>
 
-      {/* Tabs */}
-      <div className="grid-item-large">
-        <Tabs
-          tabs={tabsData}
-          defaultActiveTab={0}
-          tabBorderColor="#ccc"
-          tabBorderWidth="1px"
-          tabBorderRadius="5px"
-          tabFontFamily="Arial"
-          tabFontSize="16px"
+      <div className="grid-item">
+        <Card
+          title="Sample Card"
+          description="This is a sample card description."
+          imageUrl="https://via.placeholder.com/300x150"
+          imageAlt="Sample Image"
+          actions={
+            <RctsComptBtn
+              text="Learn More"
+              size="small"
+              onClick={() => alert("Card button clicked!")}
+            />
+          }
         />
       </div>
 
@@ -181,6 +184,19 @@ const App: React.FC = () => {
             buttonText="Close"
           />
         )}
+      </div>
+
+      {/* Tabs */}
+      <div className="grid-item-large">
+        <Tabs
+          tabs={tabsData}
+          defaultActiveTab={0}
+          tabBorderColor="#ccc"
+          tabBorderWidth="1px"
+          tabBorderRadius="5px"
+          tabFontFamily="Arial"
+          tabFontSize="16px"
+        />
       </div>
 
       <div className="grid-item">
@@ -267,22 +283,6 @@ const App: React.FC = () => {
           onColor="green"
           offColor="gray"
           size="medium"
-        />
-      </div>
-
-      <div className="grid-item">
-        <Card
-          title="Sample Card"
-          description="This is a sample card description."
-          imageUrl="https://via.placeholder.com/300x150"
-          imageAlt="Sample Image"
-          actions={
-            <RctsComptBtn
-              text="Learn More"
-              size="small"
-              onClick={() => alert("Card button clicked!")}
-            />
-          }
         />
       </div>
 
