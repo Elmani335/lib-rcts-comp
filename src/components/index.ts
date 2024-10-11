@@ -1,3 +1,3 @@
 export * from "./Atom/select";
-export * from "./input";
+export * from "./Atom/input";
 export * from "./Atom/button";

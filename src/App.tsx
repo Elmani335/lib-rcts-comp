@@ -9,8 +9,8 @@ import Card from "./components/Molecule/card/card";
 import Breadcrumb from "./components/Molecule/breadcrumb/breadcrumb";
 import RctsComptSelect from "./components/Atom/select/select";
 import RctsComptInput from "./components/Atom/input/input";
-import Tabs from "./components/tabs/tabs";
-import CustomTable from "./components/table/table";
+import Tabs from "./components/Organism/tabs/tabs";
+import CustomTable from "./components/Organism/table/table";
 
 import "./App.css";
 
@@ -45,12 +45,18 @@ const App: React.FC = () => {
       {[...Array(15)].map((_, index) => (
         <div className="grid-item" key={index}>
           {index === 0 && (
-            <RctsComptBtn text="Click Me!" primary size="medium" />
+            <RctsComptBtn
+              text="Click Me!"
+              color="#FFFF"
+              backgroundColor="#6a0dad"
+              size="medium"
+            />
           )}
           {index === 1 && (
             <RctsComptInput
               type="text"
               withLabel={true}
+              backgroundColor="#6a0dad"
               text="test"
               display="side-by-side-right"
               fontSize="fontSizeLarge"
@@ -86,6 +92,7 @@ const App: React.FC = () => {
               text="Select an option"
               size="small"
               display="above"
+              backgroundColor="#6a0dad"
               multiple
               onChange={(e) => console.log(e.target.value)}
             />
@@ -94,13 +101,15 @@ const App: React.FC = () => {
             <div>
               <button
                 className="button"
+                //backgroundColor="#2ecc71"
                 onClick={() => showAlert("danger", "Succès !")}
               >
                 Montrer l'alerte
               </button>
               {alert && (
                 <Alert
-                  type={alert.type}
+                  backgroundColor="#6a0dad"
+                  type={"danger"}
                   message={alert.message}
                   buttonText="Fermer"
                   onClose={() => setAlert(null)}
@@ -116,6 +125,9 @@ const App: React.FC = () => {
               <Checkbox
                 name="exampleCheckbox"
                 text="La Centrale"
+                backgroundColor="#6a0dad"
+                color="#999b9c"
+                borderRadius="30px"
                 data={[
                   {
                     group: "Moteur",
@@ -149,6 +161,7 @@ const App: React.FC = () => {
                 }}
                 value={["1.4", "Essence"]}
                 disabled={false}
+                color="#000000"
                 required={true}
                 display="vertical"
                 withLabel={true}
@@ -183,25 +196,18 @@ const App: React.FC = () => {
             <Toggle
               isOn={isOn}
               onToggle={setIsOn}
-              onColor="green"
-              offColor="red"
+              onColor="gray"
+              offColor="purple"
               size="small"
             />
           )}
           {index === 13 && (
             <div>
-              <Loader />
               <Loader
                 size={40}
-                color="#e74c3c"
+                color="#6a0dad"
                 speed={1}
                 text="Veuillez patienter..."
-              />
-              <Loader
-                size={40}
-                color="#2ecc71"
-                speed={2}
-                text="Téléchargement en cours..."
               />
             </div>
           )}

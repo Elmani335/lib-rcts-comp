@@ -7,19 +7,25 @@ export type AlertProps = {
   buttonText?: string;
   onClose?: () => void;
   autoClose?: boolean;
-  duration?: number; 
+  backgroundColor?: string;
+  duration?: number;
   size?: "small" | "medium" | "large";
 };
 
 const Alert: React.FC<AlertProps> = ({
   type,
   message,
-  buttonText = "Fermer", 
+  buttonText = "Fermer",
   onClose,
   autoClose = true,
   duration = 3000,
+  backgroundColor,
   size,
 }) => {
+  const alertStyle = {
+    backgroundColor,
+  };
+
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
@@ -35,12 +41,15 @@ const Alert: React.FC<AlertProps> = ({
   if (!visible) return null;
 
   return (
-    <div className={`alert alert-${type} ${size}`}>
+    <div className={`alert alert-${type} ${size}`} style={alertStyle}>
       <span>{message}</span>
-      <button className="button" onClick={() => {
-        setVisible(false);
-        onClose && onClose();
-      }}>
+      <button
+        className="button"
+        onClick={() => {
+          setVisible(false);
+          onClose && onClose();
+        }}
+      >
         {buttonText}
       </button>
     </div>

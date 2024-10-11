@@ -18,6 +18,9 @@ export type CheckboxProps = {
   onChange: ChangeEventHandler<HTMLInputElement>;
   disabled?: boolean;
   required?: boolean;
+  backgroundColor?: string;
+  color?: string;
+  borderRadius?: number;
   text?: string;
   value?: string[]; // Valeur actuelle (tableau de valeurs sélectionnées)
   display?: "vertical" | "horizontal";
@@ -34,20 +37,26 @@ const Checkbox: React.FC<CheckboxProps> = ({
   onChange,
   disabled,
   required,
-  value = [],
+  backgroundColor,
+  color,
+  borderRadius,
   display = "vertical",
-  withLabel,
   fontSize,
   border,
   size,
 }) => {
+  const checkboxStyle = {
+    backgroundColor,
+    borderRadius,
+    color,
+  };
   return (
     <div className={`checkbox-container ${display} border-${border} ${size}`}>
-        <label>{text}</label>
+      <label>{text}</label>
       {data.map((item, index) => {
         if ("group" in item) {
           return (
-            <fieldset key={index}>
+            <fieldset key={index} style={checkboxStyle}>
               <legend>{item.group}</legend>
               {item.options.map((option, optIndex) => (
                 <div key={optIndex} className={`checkbox ${fontSize}`}>
@@ -71,6 +80,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
             <div key={index} className={`checkbox ${fontSize}`}>
               <label>
                 <input
+                  style={checkboxStyle}
                   type="checkbox"
                   name={name}
                   value={item.value}
