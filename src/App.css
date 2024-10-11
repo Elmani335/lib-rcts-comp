@@ -4,10 +4,22 @@
   gap: 20px;
   padding: 20px;
 }
+
 .grid-item {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 150px;
-  border: 1px solid #ddd;
+  border: 1px solid #ff0000;
+}
+
+.grid-item-large {
+  grid-column: span 3;
+  grid-row: span 2;
+  height: 100%;
+}
+
+.carousel-item-large {
+  grid-column: span 3;
+  grid-row: span 2;
 }
