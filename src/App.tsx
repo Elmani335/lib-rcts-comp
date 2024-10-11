@@ -58,8 +58,6 @@ const App: React.FC = () => {
                 onChange={(e) => console.log(e.target.value)}
             />
           )}        
-            <RctsComptInput type="text" withLabel={true} text="test" display="side-by-side-right" fontSize="fontSizeLarge" id="id" name="name" autoFocus required size="large" />
-          )}  
           {index === 10 && (
             /* Personnalisation des props */
             <div>
