@@ -1,0 +1,29 @@
+ autoFocus
+ type="text"
+ value="Valeur par défaut"
+ placeholder="Mot de passe"
+ maxLength={15}
+ readOnly 
+ required
+ disabled
+ multiple pour type="file"
+ min="2024-01-01" pour type="date" && min={1} pour type="number"
+ max="2024-01-010" pour type="date" && min={10} pour type="number"
+ pattern="[A-Za-z]{3}" && title="Code Pays 3 lettres" pour submit le form qui retourne erreur "Code Pays 3 lettres" si input + de 3 lettres
+
+
+   autoFocus?: boolean;
+  type?: "button" | "checkbox" | "color" | "date" | "datetime-local" | "email" | "file" | "hidden" | "image" | "month" | "number" | "password" | "radio" | "range" | "reset" | "search"  | "submit" | "tel" | "text" | "time" | "url" | "week";
+  value?: string;
+  placeholder?: string;
+  readOnly?: boolean;
+  required?: boolean;
+  maxLength?: number; 
+  min?: string | number; 
+  max?: string | number; 
+  multiple?: boolean;
+  pattern?: string;
+  title?: string;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+  disabled?: boolean;
+  size?: "small" | "medium" | "large";
