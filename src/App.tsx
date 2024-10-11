@@ -171,6 +171,16 @@ const App: React.FC = () => {
           size="medium"
           onClick={() => showAlert("info", "This is an informational alert!")}
         />
+        {alert && (
+          <Alert
+            type={alert.type}
+            message={alert.message}
+            onClose={handleAlertClose}
+            autoClose={false}
+            size="medium"
+            buttonText="Close"
+          />
+      )}
       </div>
 
       <div className="grid-item">
@@ -299,21 +309,6 @@ const App: React.FC = () => {
           enableSelection={true}
         />
       </div>
-
-
-
-      {alert && (
-        <div className="grid-item">
-          <Alert
-            type={alert.type}
-            message={alert.message}
-            onClose={handleAlertClose}
-            autoClose={false}
-            size="medium"
-            buttonText="Close"
-          />
-        </div>
-      )}
     </div>
   );
 };
