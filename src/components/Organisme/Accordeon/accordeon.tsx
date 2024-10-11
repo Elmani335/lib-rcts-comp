@@ -47,22 +47,22 @@ const Accordeon: React.FC<AccordeonProps> = ({
 
 
   return (
-    <div className={`accordeon-container border-${border} ${size}`}>
-      {withLabel && <label className={fontSize}>{text}</label>}
-      {data.map((item, index) => (
-        <div key={index} className="accordion-item">
-          <div
-            className={`accordion-header ${openIndexes.includes(index) ? 'open' : ''}`}
-            onClick={() => toggleAccordion(index, item.value)}
-          >
-            {item.title}
-          </div>
-          {openIndexes.includes(index) && (
-            <div className="accordion-content">{item.body}</div>
-          )}
+  <div className={`accordeon-container border-${border} ${size}`}>
+    {withLabel && <label className={fontSize}>{text}</label>}
+    {data.map((item, index) => (
+      <div key={index} className="accordion-item">
+        <div
+          className={`accordion-header ${openIndexes.includes(index) ? 'open' : ''} ${size}`}
+          onClick={() => toggleAccordion(index, item.value)}
+        >
+          {item.title}
         </div>
-      ))}
-    </div>
+        {openIndexes.includes(index) && (
+          <div className={`accordion-content ${size}`}>{item.body}</div>
+        )}
+      </div>
+    ))}
+  </div>
   );
 };
 
