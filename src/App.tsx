@@ -11,6 +11,7 @@ import RctsComptSelect from "./components/Atom/select/select";
 import RctsComptInput from "./components/Atom/input/input";
 import Tabs from "./components/tabs/tabs";
 import CustomTable from "./components/table/table";
+import Carousel from "./components/carousel/carousel";
 
 import "./App.css";
 
@@ -42,10 +43,17 @@ const App: React.FC = () => {
 
   return (
     <div className="grid-container">
-      {[...Array(15)].map((_, index) => (
-        <div className="grid-item" key={index}>
+      {[...Array(20)].map((_, index) => (
+        <div
+          className={`grid-item ${
+            index === 3 || index === 7 || index === 8 || index === 9
+              ? "grid-item-large"
+              : ""
+          }`}
+          key={index}
+        >
           {index === 0 && (
-            <RctsComptBtn text="Click Me!" primary size="medium" />
+            <RctsComptBtn text="Click Me!" size="medium" />
           )}
           {index === 1 && (
             <RctsComptInput
@@ -100,7 +108,7 @@ const App: React.FC = () => {
               </button>
               {alert && (
                 <Alert
-                  type={alert.type}
+                  type={"danger"}
                   message={alert.message}
                   buttonText="Fermer"
                   onClose={() => setAlert(null)}
@@ -111,7 +119,6 @@ const App: React.FC = () => {
             </div>
           )}
           {index === 4 && (
-            /* Personnalisation des props */
             <div style={{ padding: "20px" }}>
               <Checkbox
                 name="exampleCheckbox"
@@ -158,15 +165,46 @@ const App: React.FC = () => {
               />
             </div>
           )}
-          {index === 10 && (
-            /* Personnalisation des props */
+          {index === 5 && (
+            <Tabs
+              tabs={[
+                { label: "Tab 1", content: <div>Content for Tab 1</div> },
+                { label: "Tab 2", content: <div>Content for Tab 2</div> },
+                { label: "Tab 3", content: <div>Content for Tab 3</div> },
+              ]}
+            />
+          )}
+          {index === 6 && (
+            <CustomTable
+              rows={4}
+              columns={4}
+              columnNames={["Name", "Age", "Country", "Occupation"]}
+              rowNames={["1", "2", "3", "4"]}
+              data={{
+                "0-0": {
+                  content: "Alice",
+                  color: "#000",
+                  backgroundColor: "#f8f9fa",
+                },
+                "0-1": { content: "24", color: "#000" },
+                "0-2": { content: "France", color: "#000" },
+                "0-3": { content: "Engineer", color: "#000" },
+              }}
+              borderColor="#ddd"
+              borderWidth="2px"
+              enableSorting={true}
+              enablePagination={true}
+              rowsPerPage={2}
+              enableSelection={true}
+            />
+          )}
+          {index === 7 && (
             <div>
               <Breadcrumb items={breadcrumbItems} separator=">" />
               <h1>Laptops</h1>
             </div>
           )}
-          {index === 11 && (
-            /* Personnalisation des props */
+          {index === 8 && (
             <Card
               title="Beau couché de soleil"
               description="Doux couches de soleil en fait une belle pause"
@@ -177,42 +215,6 @@ const App: React.FC = () => {
                 <button style={{ padding: "8px 16px" }}>en savoir plus</button>
               }
             />
-          )}
-
-          {index === 12 && (
-            <Toggle
-              isOn={isOn}
-              onToggle={setIsOn}
-              onColor="green"
-              offColor="red"
-              size="small"
-            />
-          )}
-          {index === 13 && (
-            <div>
-              <Loader />
-              <Loader
-                size={40}
-                color="#e74c3c"
-                speed={1}
-                text="Veuillez patienter..."
-              />
-              <Loader
-                size={40}
-                color="#2ecc71"
-                speed={2}
-                text="Téléchargement en cours..."
-              />
-            </div>
-          )}
-          {index === 14 && (
-            <div style={{ padding: "20px" }}>
-              <Radio
-                options={["Voiture", "Bateau", "Avion"]}
-                name="radio"
-                onChange={handleRadioChange}
-              />
-            </div>
           )}
         </div>
       ))}
