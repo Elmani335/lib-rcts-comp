@@ -7,6 +7,7 @@ import Card from "./components/Molecule/card/card";
 import Breadcrumb from "./components/Molecule/breadcrumb/breadcrumb";
 
 import "./App.css";
+import RctsComptSelect from "./components/select/select";
 import RctsComptInput from "./components/input/input";
 
 const App: React.FC = () => {
@@ -37,9 +38,28 @@ const App: React.FC = () => {
             /* Personnalisation des props */
             <RctsComptBtn text="Click Me!" primary size="medium" />
           )}
-          {index === 1 && (
+          {index === 1 && (      
             <RctsComptInput type="text" withLabel={true} text="test" display="side-by-side-right" fontSize="fontSizeLarge" id="id" name="name" autoFocus required size="large" />
+          )}    
+          {index === 2 && (
+            <RctsComptSelect
+                id="exampleSelect"
+                name="example"
+                data={[
+                    { group: "Renault", options: [{ value: "clio2", label: "Clio 2" }, { value: "Megane3", label: "Megane 3" }] },
+                    { group: "Peugeot", options: [{ value: "206", label: "206" }, { value: "5008", label: "5008" }] },
+                    { value: "Autre", label: "autre" } 
+                ]}
+                withLabel={true}
+                text="Select an option"
+                size="small"
+                display="above"
+                multiple
+                onChange={(e) => console.log(e.target.value)}
+            />
           )}        
+            <RctsComptInput type="text" withLabel={true} text="test" display="side-by-side-right" fontSize="fontSizeLarge" id="id" name="name" autoFocus required size="large" />
+          )}  
           {index === 10 && (
             /* Personnalisation des props */
             <div>
