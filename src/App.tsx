@@ -245,10 +245,10 @@ const App: React.FC = () => {
 
       <div className="grid-item">
         <Loader
-          size={20}
+          size={40}
           color="#7e17d3"
           speed={1}
-          text="Loading..."
+          text="Connection Satelite en cours..."
           text-color="#7e17d3"
         />
       </div>
@@ -280,7 +280,7 @@ const App: React.FC = () => {
         <Toggle
           isOn={isToggleOn}
           onToggle={handleToggleChange}
-          onColor="green"
+          onColor="#6B238E"
           offColor="gray"
           size="medium"
         />
