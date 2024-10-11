@@ -119,29 +119,29 @@ const App: React.FC = () => {
 
   return (
     <div className="grid-container">
-            {index === 5 && (
-            /* Personnalisation des props */
-            <div style={{ padding: "20px" }}>
-                <Accordeon
-                name="exampleCheckbox"
-                text="accordeon"
-                data={[
-                    { title: "titre 1", body: "body1", value: "value1" },
-                    { title: "titre 2", body: "body2", value: "value2" },
-                    { title: "titre 3", body: "body3", value: "value3" },
-                ]}
-                onChange={(indexClick, openIndexes) => {
-                  console.log("Section Cliquée : " + indexClick);
-                  console.log("Section Ouvert : " + openIndexes);
-              }}
-                withLabel={true}
-                multiple={true}
-                fontSize="fontSizeMedium"
-                border
-                size="large"
-                />
+            {/* Personnalisation des props */}
+            <div className="grid-item">
+              <div style={{ padding: "20px" }}>
+                  <Accordeon
+                  name="exampleAccordeon"
+                  text="accordeon"
+                  data={[
+                      { title: "titre 1", body: "body1", value: "value1" },
+                      { title: "titre 2", body: "body2", value: "value2" },
+                      { title: "titre 3", body: "body3", value: "value3" },
+                  ]}
+                  onChange={(indexClick, openIndexes) => {
+                    console.log("Section Cliquée : " + indexClick);
+                    console.log("Section Ouvert : " + openIndexes);
+                }}
+                  withLabel={true}
+                  multiple={true}
+                  fontSize="fontSizeMedium"
+                  border
+                  size="large"
+                  />
+              </div>
             </div>
-          )}
       {/* Breadcrumb */}
       <div className="grid-item">
         <Breadcrumb
@@ -254,6 +254,22 @@ const App: React.FC = () => {
         />
       </div>
 
+      <div className="grid-item">
+        <Card
+          title="Sample Card"
+          description="This is a sample card description."
+          imageUrl="https://via.placeholder.com/300x150"
+          imageAlt="Sample Image"
+          actions={
+            <RctsComptBtn
+              text="Learn More"
+              size="small"
+              onClick={() => alert("Card button clicked!")}
+            />
+          }
+        />
+      </div>
+
       <div className="grid-item-large">
         <Carousel
           slides={slides}
@@ -284,21 +300,7 @@ const App: React.FC = () => {
         />
       </div>
 
-      <div className="grid-item">
-        <Card
-          title="Sample Card"
-          description="This is a sample card description."
-          imageUrl="https://via.placeholder.com/300x150"
-          imageAlt="Sample Image"
-          actions={
-            <RctsComptBtn
-              text="Learn More"
-              size="small"
-              onClick={() => alert("Card button clicked!")}
-            />
-          }
-        />
-      </div>
+
 
       {alert && (
         <div className="grid-item">
