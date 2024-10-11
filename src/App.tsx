@@ -65,7 +65,24 @@ const App: React.FC = () => {
                 multiple
                 onChange={(e) => console.log(e.target.value)}
             />
-          )}        
+          )}     
+            {index === 3 && (
+            <div>
+              <button className="button" onClick={() => showAlert("danger", "Succès !")}>
+                Montrer l'alerte
+              </button>
+              {alert && (
+                <Alert
+                  type={alert.type}
+                  message={alert.message}
+                  buttonText="Fermer" 
+                  onClose={() => setAlert(null)}
+                  autoClose={false}
+                  size="small"
+                />
+              )}
+            </div>
+          )}   
           {index === 10 && (
             /* Personnalisation des props */
             <div>
@@ -106,23 +123,6 @@ const App: React.FC = () => {
           {index === 14 && (
             <div style={{ padding: "20px" }}>
               <Radio options={["Voiture", "Bateau", "Avion"]} name="radio" onChange={handleRadioChange} />
-            </div>
-          )}
-          {index === 11 && (
-            <div>
-              <button className="button" onClick={() => showAlert("danger", "Succès !")}>
-                Montrer l'alerte
-              </button>
-              {alert && (
-                <Alert
-                  type={alert.type}
-                  message={alert.message}
-                  buttonText="Fermer" 
-                  onClose={() => setAlert(null)}
-                  autoClose={false}
-                  size="small"
-                />
-              )}
             </div>
           )}
         </div>

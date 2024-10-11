@@ -14,7 +14,7 @@ export type AlertProps = {
 const Alert: React.FC<AlertProps> = ({
   type,
   message,
-  buttonText = "Close", // Valeur par défaut
+  buttonText = "Fermer", 
   onClose,
   autoClose = true,
   duration = 3000,
