@@ -7,6 +7,7 @@ import Card from "./components/Molecule/card/card";
 import Breadcrumb from "./components/Molecule/breadcrumb/breadcrumb";
 
 import "./App.css";
+import RctsComptInput from "./components/input/input";
 
 const App: React.FC = () => {
   const breadcrumbItems = [
@@ -36,6 +37,9 @@ const App: React.FC = () => {
             /* Personnalisation des props */
             <RctsComptBtn text="Click Me!" primary size="medium" />
           )}
+          {index === 1 && (
+            <RctsComptInput type="text" withLabel={true} text="test" display="side-by-side-right" fontSize="fontSizeLarge" id="id" name="name" autoFocus required size="large" />
+          )}        
           {index === 10 && (
             /* Personnalisation des props */
             <div>
